@@ -1,0 +1,4 @@
+---
+ansible_host: 10.0.0.11
+ansible_port: 2222
+ansible_user: automation 
