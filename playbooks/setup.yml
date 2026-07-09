@@ -1,0 +1,31 @@
+---
+- name: Configure web servers
+  hosts: web
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: Install httpd
+      ansible.builtin.dnf:
+        name: httpd
+        state: present 
+      tags:
+        - install 
+
+    - name: Deploy motd
+      ansible.builtin.copy:
+        content: "Welcome to the exam server\n"
+        dest: /etc/motd
+      tags:
+        - config 
+
+    - name: Start and enable httpd 
+      ansible.builtin.service: 
+        name: httpd
+        state: started
+        enabled: yes
+      tags:
+        - install 
+        - service 
+
+
