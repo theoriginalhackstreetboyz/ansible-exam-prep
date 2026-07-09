@@ -1,0 +1,34 @@
+--- 
+- name: Filters and plugins demo 
+  hosts: localhost
+  gather_facts: no
+  vars: 
+    users:
+      - name: alice 
+        role: admin
+      - name: bob
+        role: developer 
+      - name: carol
+        role: admin 
+
+    packages: 
+      httpd: "2.4.57"
+      vim: "9.0"
+
+  tasks:
+    - name: Read file via lookup 
+      ansible.builtin.debug:
+        msg: "{{ lookup('ansible.builtin.file', playbook_dir + '/../files/greeting.txt') }}"
+
+    - name: Print admin names only 
+      ansible.builtin.debug:
+        msg: "{{ users | selectattr('role', 'equalto', 'admin') | map(attribute='name') | list }}"
+
+    - name: Print network address
+      ansible.builtin.debug:
+        msg: "{{ '192.168.1.10/24' | ansible.utils.ipaddr('network') }}"
+
+    - name: Loop over dict 
+      ansible.builtin.debug:
+        msg: "{{ item.key }} is version {{ item.value }}"
+      loop: "{{ packages | dict2items }}" 
