@@ -1,0 +1,40 @@
+---
+- name: Configure web servers
+  hosts: db
+  become: yes
+  become_user: root
+
+  tasks: 
+    - name: Install httpd 
+      ansible.builtin.dnf:
+        name: httpd
+        state: present 
+      tags:
+        - install 
+
+    - name: Deploy motd
+      ansible.builtin.copy:
+        content: "Welcome to the exam server"
+        dest: /etc/motd
+      tags:
+        - config 
+
+    - name: Start and enable the httpd
+      ansible.builtin.service:
+        name: httpd
+        state: present 
+        enable: yes
+      tags:
+        - install 
+        - service 
+
+    - name: Create directory
+      become_user: automation 
+      ansible.builtin.file:
+        path: /opt/webapp
+        state: directory
+        mode: "0750"
+        owner: "automation"
+        group: "automation"
+      tags: 
+        - deploy 
