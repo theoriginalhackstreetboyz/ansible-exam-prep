@@ -1,0 +1,4 @@
+---
+ansible_host: 10.0.0.21
+ansible_user: dbadmin 
+ansible_become: yes 
