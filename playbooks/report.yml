@@ -15,6 +15,8 @@
       httpd: "2.4.57"
       vim: "9.0"
 
+    subnet: "10.20.30.0/24"
+
   tasks:
     - name: Read file via lookup 
       ansible.builtin.debug:
@@ -32,3 +34,10 @@
       ansible.builtin.debug:
         msg: "{{ item.key }} is version {{ item.value }}"
       loop: "{{ packages | dict2items }}" 
+
+    - name: Print env vars 
+      ansible.builtin.debug:
+        msg: "{{ query('ansible.builtin.env' | selectattr(item.value) | list }}"
+
+    - name: Print netmask
+
