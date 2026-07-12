@@ -1,0 +1,28 @@
+--- 
+- name: Delegation demo 
+  hosts: web
+  gather_facts: yes 
+
+  tasks:
+    - name: Add host to LB pool 
+      ansible.builtin.lineinfile: 
+        path: /tmp/lb_pool.txt 
+        line: "{{ inventory_hostname }} - {{ ansible_default_ipv4.address | default('unknown') }}"
+        create: yes
+      delegate_to: lb1
+      delegate_facts: no 
+
+    - name: Deployment complete notice
+      ansible.builtin.debug: 
+        msg: "Deployment complete for all web hosts" 
+      run_once: yes 
+      delegate_to: localhost
+
+    - name: Gather lb1's own facts 
+      ansible.builtin.setup:
+      delegate_to: lb1
+      delegate_facts: yes 
+
+    - name: Print lb1's hostnmame 
+      ansible.builtin.debug:
+        msg: "Deployment complete with tasks fathered from {{ hostvars['lb1']['ansible_hostname'] }}"
