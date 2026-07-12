@@ -37,7 +37,17 @@
 
     - name: Print env vars 
       ansible.builtin.debug:
-        msg: "{{ query('ansible.builtin.env' | selectattr(item.value) | list }}"
+        msg: "{{query('ansible.builtin.env', 'HOME', 'USER') }}"
 
     - name: Print netmask
+      ansible.builtin.debug:
+        msg: "{{ subnet | ansible.utils.ipaddr('netmask') }}"
 
+    - name: Verify if the IP exists in that subnet 
+      ansible.builtin.debug:
+        msg: "{{ '10.20.30.5' is ansible.utils.in_network(subnet) }}"
+
+    - name: Print list to numbers 
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      loop: "{{ [[1,2],[3,4]] | ansible.builtin.flatten }}" 
