@@ -1,0 +1,9 @@
+---
+plugin: ansible.builtin.constructed
+strict: true
+groups:
+  frontend_servers: tier == 'frontend'
+keyed_groups: 
+  - key: site
+    prefix: loc
+

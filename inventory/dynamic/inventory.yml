@@ -1,0 +1,11 @@
+---
+web:
+  hosts:
+    web1: 
+      ansible_host: 79.76.119.98
+      site: frankfurt
+      tier: frontend
+    web2:
+      ansible_host: 138.2.147.218
+      site: frankfurt
+      tier: backend
