@@ -1,0 +1,4 @@
+*.log
+**/context/_build
+playbooks/*-artifact-*.json
+**/playbooks/*-artifact-*.json

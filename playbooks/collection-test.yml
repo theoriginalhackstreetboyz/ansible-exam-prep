@@ -1,0 +1,5 @@
+---
+- hosts: web2
+  become: true
+  roles: 
+    - examprep.webtools.install_nginx

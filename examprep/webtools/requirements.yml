@@ -1,0 +1,4 @@
+---
+collections: 
+  - name: /home/opc/ansible-labs/ansible-exam-prep/examprep/webtools/examprep-webtools-1.0.0.tar.gz
+    type: file 

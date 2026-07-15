@@ -1,0 +1,5 @@
+---
+# defaults file for roles/install_nginx
+- name: Install nginx 
+  ansible.builtin.dnf:
+    install: nginx

@@ -1,0 +1,30 @@
+{
+ "collection_info": {
+  "namespace": "examprep",
+  "name": "webtools",
+  "version": "1.0.1",
+  "authors": [
+   "Vivaan Singh uvakas03@gmail.com"
+  ],
+  "readme": "README.md",
+  "tags": [],
+  "description": "your collection description",
+  "license": [
+   "GPL-2.0-or-later"
+  ],
+  "license_file": null,
+  "dependencies": {},
+  "repository": "http://example.com/repository",
+  "documentation": "http://docs.example.com",
+  "homepage": "http://example.com",
+  "issues": "http://example.com/issue/tracker"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "ded2d7d48cecebc4c1ae6d95601498a3dd0e50eb1c0cd10bd8c512068e7fc84f",
+  "format": 1
+ },
+ "format": 1
+}
